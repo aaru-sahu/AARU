@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <link rel="stylesheet" href="joke-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="joke-generator">
+            <div class="header">
+                <h1>😂 Joke Generator</h1>
+                <p>Get a random laugh!</p>
+            </div>
+
+            <div class="joke-card">
+                <div class="joke-content" id="jokeContent">
+                    <p>Click the button to get a random joke!</p>
+                </div>
+                <div class="joke-type" id="jokeType"></div>
+            </div>
+
+            <div class="button-group">
+                <button id="getJokeBtn" class="btn btn-primary">Get a Joke</button>
+                <button id="shareBtn" class="btn btn-secondary" disabled>Share Joke</button>
+                <button id="copyBtn" class="btn btn-secondary" disabled>Copy Joke</button>
+            </div>
+
+            <div class="loading" id="loadingSpinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading your joke...</p>
+            </div>
+
+            <div class="joke-filters">
+                <h3>Filter by Category:</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="any">Any</button>
+                    <button class="filter-btn" data-category="general">General</button>
+                    <button class="filter-btn" data-category="programming">Programming</button>
+                    <button class="filter-btn" data-category="knock-knock">Knock-knock</button>
+                </div>
+            </div>
+
+            <div class="joke-history">
+                <h3>Recent Jokes:</h3>
+                <ul id="jokeHistory"></ul>
+            </div>
+
+            <footer>
+                <p>Powered by <a href="https://jokeapi.dev/" target="_blank">JokeAPI</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="joke-script.js"></script>
+</body>
+</html>
