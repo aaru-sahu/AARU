@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPSC Resources - Advanced Platform</title>
+    <link rel="stylesheet" href="cgpsc-advanced-styles.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal active">
+        <div class="modal-content login-container">
+            <div class="login-header">
+                <h1>CGPSC Resources</h1>
+                <p>Your Complete Study Platform</p>
+            </div>
+            
+            <div class="login-tabs">
+                <button class="tab-btn active" data-tab="phone">Phone</button>
+                <button class="tab-btn" data-tab="gmail">Gmail</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Phone Login -->
+            <div id="phone" class="tab-content active">
+                <form id="phoneLoginForm">
+                    <input type="tel" id="phoneInput" placeholder="Enter 10-digit phone number" maxlength="10" required>
+                    <input type="password" id="phonePass" placeholder="Enter password" required>
+                    <button type="submit" class="btn btn-primary">Login with Phone</button>
+                </form>
+            </div>
+
+            <!-- Gmail Login -->
+            <div id="gmail" class="tab-content">
+                <form id="gmailLoginForm">
+                    <input type="email" id="gmailInput" placeholder="Enter your Gmail" required>
+                    <input type="password" id="gmailPass" placeholder="Enter password" required>
+                    <button type="submit" class="btn btn-primary">Login with Gmail</button>
+                </form>
+            </div>
+
+            <!-- Sign Up -->
+            <div id="signup" class="tab-content">
+                <form id="signupForm">
+                    <input type="text" id="signupName" placeholder="Full Name" required>
+                    <input type="tel" id="signupPhone" placeholder="Phone Number (10 digits)" maxlength="10" required>
+                    <input type="email" id="signupEmail" placeholder="Gmail Address" required>
+                    <input type="password" id="signupPass" placeholder="Create Password" required>
+                    <input type="password" id="signupPassConfirm" placeholder="Confirm Password" required>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+            </div>
+
+            <p class="login-footer">Secure login | Your data is protected</p>
+        </div>
+    </div>
+
+    <!-- Main Website (Hidden until login) -->
+    <div id="mainContent" class="hidden">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">CGPSC Resources</div>
+                <ul class="nav-links">
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#materials">Materials</a></li>
+                    <li><a href="#progress">Progress</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#tests">Tests</a></li>
+                </ul>
+                <div class="navbar-right">
+                    <button id="darkModeToggle" class="dark-mode-btn">🌙</button>
+                    <div class="user-menu">
+                        <button id="userBtn" class="user-btn"></button>
+                        <div id="userDropdown" class="dropdown-menu">
+                            <a href="#profile">👤 Profile</a>
+                            <a href="#bookmarks">⭐ Bookmarks</a>
+                            <a href="#settings">⚙️ Settings</a>
+                            <button id="logoutBtn" class="logout-btn">🚪 Logout</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard">
+            <div class="container">
+                <h2>Welcome, <span id="userDisplayName"></span>!</h2>
+                
+                <div class="dashboard-grid">
+                    <!-- User Stats -->
+                    <div class="stats-card">
+                        <div class="stat-icon">📚</div>
+                        <h3 id="materialsViewed">0</h3>
+                        <p>Materials Viewed</p>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-icon">✅</div>
+                        <h3 id="testsCompleted">0</h3>
+                        <p>Tests Completed</p>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-icon">⭐</div>
+                        <h3 id="bookmarkCount">0</h3>
+                        <p>Bookmarks</p>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-icon">🔥</div>
+                        <h3 id="streakDays">0</h3>
+                        <p>Day Streak</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button onclick="scrollToSection('materials')" class="action-btn">📖 Start Learning</button>
+                        <button onclick="scrollToSection('tests')" class="action-btn">🧠 Take Test</button>
+                        <button onclick="scrollToSection('schedule')" class="action-btn">📅 Plan Schedule</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Materials Section -->
+        <section id="materials" class="materials">
+            <div class="container">
+                <h2>Study Materials</h2>
+                
+                <div class="materials-filter">
+                    <input type="text" id="searchMaterials" placeholder="Search materials...">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="books">Books</option>
+                        <option value="notes">Notes</option>
+                        <option value="papers">Previous Papers</option>
+                        <option value="videos">Videos</option>
+                    </select>
+                </div>
+
+                <div class="materials-grid" id="materialsGrid">
+                    <!-- Materials will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section id="progress" class="progress">
+            <div class="container">
+                <h2>Your Progress</h2>
+                
+                <div class="progress-container">
+                    <div class="progress-item">
+                        <h3>Prelims Preparation</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="prelimsProgress" style="width: 45%"></div>
+                        </div>
+                        <p id="prelimsText">45% Complete</p>
+                    </div>
+                    <div class="progress-item">
+                        <h3>Mains Preparation</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="mainsProgress" style="width: 30%"></div>
+                        </div>
+                        <p id="mainsText">30% Complete</p>
+                    </div>
+                    <div class="progress-item">
+                        <h3>Interview Preparation</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="interviewProgress" style="width: 20%"></div>
+                        </div>
+                        <p id="interviewText">20% Complete</p>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <ul id="activityList"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Schedule -->
+        <section id="schedule" class="schedule">
+            <div class="container">
+                <h2>Study Schedule</h2>
+                
+                <div class="schedule-planner">
+                    <h3>Create Your Schedule</h3>
+                    <form id="scheduleForm">
+                        <input type="text" placeholder="Subject/Topic" id="scheduleSubject" required>
+                        <input type="time" id="scheduleTime" required>
+                        <input type="number" placeholder="Duration (hours)" id="scheduleDuration" min="1" required>
+                        <button type="submit" class="btn btn-primary">Add to Schedule</button>
+                    </form>
+
+                    <div class="schedule-list">
+                        <h4>Today's Schedule</h4>
+                        <ul id="todaySchedule"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mock Tests -->
+        <section id="tests" class="tests">
+            <div class="container">
+                <h2>Mock Tests</h2>
+                
+                <div class="tests-grid">
+                    <div class="test-card">
+                        <h3>Prelims Full Test</h3>
+                        <p>100 Questions | 2 Hours</p>
+                        <div class="test-stats">
+                            <span>Attempts: <strong id="test1-attempts">0</strong></span>
+                            <span>Best Score: <strong id="test1-score">-</strong></span>
+                        </div>
+                        <button onclick="startTest(1)" class="btn btn-primary">Start Test</button>
+                    </div>
+                    <div class="test-card">
+                        <h3>Subject Wise Tests</h3>
+                        <p>50 Questions | 1 Hour</p>
+                        <div class="test-stats">
+                            <span>Attempts: <strong id="test2-attempts">0</strong></span>
+                            <span>Best Score: <strong id="test2-score">-</strong></span>
+                        </div>
+                        <button onclick="startTest(2)" class="btn btn-primary">Start Test</button>
+                    </div>
+                    <div class="test-card">
+                        <h3>Mains Practice</h3>
+                        <p>5 Questions | Descriptive</p>
+                        <div class="test-stats">
+                            <span>Attempts: <strong id="test3-attempts">0</strong></span>
+                            <span>Best Score: <strong id="test3-score">-</strong></span>
+                        </div>
+                        <button onclick="startTest(3)" class="btn btn-primary">Start Test</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2026 CGPSC Resources. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="cgpsc-advanced-script.js"></script>
+</body>
+</html>
